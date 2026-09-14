@@ -1,0 +1,380 @@
+(function () {
+  const STORAGE_KEY = 'portfolio-lang';
+
+  const DICT = {
+    ru: {
+      'common.metaDesc': 'Портфолио Даниила Пробыйголова — программист игровой логики (C++ / Unreal Engine)',
+      'common.name': 'Даниил\u00A0Пробыйголова',
+      'common.subtitle': 'Программист игровой логики\u00A0— C++\u00A0/\u00A0Unreal\u00A0Engine',
+      'common.footer': '© 2026 Даниил Пробыйголова',
+      'common.trailerCaption': 'Трейлер',
+      'contact.mail': 'Почта',
+      'contact.phone': 'Телефон',
+      'contact.telegram': 'Telegram',
+      'contact.github': 'GitHub',
+      'contact.linkedin': 'LinkedIn',
+      'contact.vk': 'ВКонтакте',
+      'contact.hh': 'HeadHunter',
+      'main.title': 'Даниил Пробыйголова — Портфолио',
+      'main.projectsTitle': 'Проекты',
+      'main.projectsIntro': 'Нажмите на иконку проекта, чтобы узнать подробнее.',
+      'main.projectsGames': 'Игровые проекты',
+      'main.projectsTools': 'Инструменты и технологии',
+      'main.expTitle': 'Коммерческий опыт',
+      'main.expIntro': 'Мой коммерческий опыт работы в игровой и IT-индустрии.',
+      'main.expOrgName': 'ООО\u00A0«ИВЛ»',
+      'main.cvLink': 'Открыть резюме (CV)',
+      'main.aboutTitle': 'О себе',
+      'main.aboutP1': 'Категорически приветствую на моём сайте-портфолио!',
+      'main.aboutP2': 'Я программист, который любит разбираться в том, как всё работает изнутри. Основной профиль — разработка компьютерных игр, но мне интересно работать и с другими технологиями.',
+      'modal.close': 'Закрыть',
+      'proj.giiga.name': 'GiiGaEngine',
+      'proj.giiga.aria': 'GiiGaEngine — подробнее',
+      'proj.dacha.name': 'Проект\u00A0Дача',
+      'proj.dacha.aria': 'Проект Дача — подробнее',
+      'proj.gravusach.name': 'Gravusach',
+      'proj.gravusach.aria': 'Gravusach — подробнее',
+      'proj.dualrun.name': 'Dual Run',
+      'proj.dualrun.aria': 'Dual Run — подробнее',
+      'proj.glintasync.name': 'GlintAsync',
+      'proj.glintasync.aria': 'GlintAsync — подробнее',
+      'projects.giiga.title': 'GiiGaEngine',
+      'projects.giiga.role': 'C++ Game Engine · 2024',
+      'projects.giiga.meta': 'Командный проект, 4 разработчика',
+      'projects.giiga.desc': 'Игровой движок на C++20 с использованием C++ Modules и скриптингом на Python.',
+      'projects.giiga.b1': 'Реализовывал систему рендеринга на DirectX 12, включая Cascaded Shadow Mapping, Deferred Rendering и другие графические техники.',
+      'projects.giiga.b2': 'Реализовал систему трансформаций игровых объектов.',
+      'projects.giiga.b3': 'Реализовал систему событий и интегрировал физический движок Jolt.',
+      'projects.giiga.b4': 'Участвовал в проектировании игрового цикла и других ключевых систем движка.',
+      'projects.dacha.title': 'Проект Дача',
+      'projects.dacha.role': 'Lead Programmer · 2024',
+      'projects.dacha.meta': 'Командный проект, 6 разработчиков',
+      'projects.dacha.desc': 'Инди-игра на Unreal Engine 5 с упором на иммерсивность, исследование и решение головоломок. Система рассудка главной героини влияет на игровой опыт и развитие игровых ситуаций. Демоверсия проекта вышла в финал конкурса VK Лаборатория.',
+      'projects.dacha.b1': 'Отвечал за программную часть проекта и архитектуру игровых систем.',
+      'projects.dacha.b2': 'Реализовал большинство ключевых игровых механик и систем, включая перемещение персонажа, инвентарь, интерактивные объекты и AI NPC.',
+      'projects.dacha.b3': 'Разработал инструменты для редактора Unreal Engine, включая плагин для создания и редактирования диалогов, упростивший реализацию квестовой системы и работу с ветвлением диалогов.',
+      'projects.gravusach.title': 'Gravusach',
+      'projects.gravusach.role': 'Одиночный проект · 2023',
+      'projects.gravusach.meta': '3D-платформер от первого лица на Unreal Engine 5',
+      'projects.gravusach.desc': 'Самостоятельно разработанный 3D-платформер от первого лица на Unreal Engine 5. Представил игру на ITMO GameDev Day 3.',
+      'projects.gravusach.b1': 'Спроектировал и реализовал систему гравитации и связанные с ней механики перемещения.',
+      'projects.gravusach.b2': 'Спроектировал и собрал 5 игровых уровней.',
+      'projects.gravusach.b3': 'Создал VFX-эффекты в Niagara.',
+      'projects.gravusach.b4': 'Реализовал звуковое оформление и записал музыкальное сопровождение проекта.',
+      'exp.rtim.name': 'rTIM',
+      'exp.rtim.aria': 'rTIM — подробнее',
+      'exp.hk.name': 'Hamster King',
+      'exp.hk.aria': 'Hamster King — подробнее',
+      'projects.rtim.title': 'rTIM',
+      'projects.rtim.role': 'C++ / Unreal Engine Developer · rTIM',
+      'projects.rtim.meta': 'Октябрь 2024 — апрель 2026',
+      'projects.rtim.desc': 'rTIM — AI-платформа для градостроительного проектирования, входящая в реестр решений в сфере ИИ для строительной отрасли. Разрабатывал desktop-приложение платформы для интерактивного 3D-проектирования, редактирования и визуализации концепций развития территорий на базе Unreal Engine 5.',
+      'projects.hk.title': 'Hamster King',
+      'projects.hk.role': 'Backend Developer · Hamster King',
+      'projects.hk.meta': 'Апрель — август 2026',
+      'projects.hk.desc': 'Многопользовательская мобильная web-игра в жанре idle с социальной составляющей. Пиковая аудитория достигала ~500 тыс. активных игроков в месяц.',
+      'projects.giiga.p1': 'Это учебный командный проект, который мы разрабатывали в течение семестра на втором курсе магистратуры.',
+      'projects.giiga.p2': 'Процесс разработки сильно расширил моё понимание работы современных игровых движков и компьютерной графики в целом. Мы вместе проектировали игровой цикл, решали, какие системы будем разрабатывать самостоятельно, а какие готовые инструменты будем интегрировать в движок — например, Jolt.',
+      'projects.giiga.p3': 'Про то, за что конкретно отвечал я, я указал в резюме.',
+      'projects.dacha.p1': 'Это игра, над которой я работал в команде из шести человек (в один период времени, а за всё время разработки в проекте поучаствовало значительно больше людей).',
+      'projects.dacha.p2': 'Я был причастен к созданию практически всех игровых механик в этой игре. Писал в том числе и инструменты для разработки, такие как квестово-диалоговый плагин.',
+      'projects.dacha.p3': 'При работе над проектом было проведено множество экспериментов. В том числе мои товарищи разработали собственный пайплайн создания моделей и материалов — всё для того, чтобы выдержать единый стиль PS1 с применением dithering-эффекта.',
+      'projects.dacha.p4': 'Атмосфера в игре — действительно одна из её сильных сторон. При этом в игру закладывалась комплексная глобальная система, которая должна была сделать мир крайне интересным для изучения и чувствительным к действиям игрока.',
+      'projects.dacha.p5': 'Игра всё ещё находится на стадии раннего доступа, но при этом в своё время прошла в финал конкурса VK Лаборатория.',
+      'projects.gravusach.p1': 'Игра, которую я разрабатывал полностью самостоятельно.',
+      'projects.gravusach.p2': 'Это тоже было сделано в рамках учебного проекта, но при этом задумка пришла мне ещё давно, поэтому выпал удачный шанс воплотить её в коде и заодно получить заслуженную оценку «отлично» в конце семестра.',
+      'projects.gravusach.p3': 'Я представлял игру на шоукейсе проектов ITMO GameDev Day 3.',
+      'projects.gravusach.p4': 'В планах — портировать игру на VR-платформы.',
+      'projects.rtim.p1': 'Мой первый коммерческий опыт в качестве Unreal Engine разработчика. Это не игра, и оттого только интереснее, что при его разработке использовался игровой движок UE5.',
+      'projects.rtim.p2': 'Проект представляет собой платформу для градостроительного проектирования. Основной продукт — backend-часть, на которой происходит создание концепции развития территории при помощи генеративного ИИ. У продукта было два клиента — web и desktop, над которым я и работал.',
+      'projects.rtim.p3': 'Задача последнего — предоставить инженерам реалистичную, красивую и интерактивную визуализацию в реальном времени той концепции развития, которую они сгенерировали, с возможностью в дальнейшем самостоятельно её редактировать.',
+      'projects.rtim.p4': 'Разрабатывали мы согласно подходу MVC. Приходилось много работать с UI, так как основное взаимодействие пользователя с приложением происходило через интерфейс. В самом проекте активно применялись технологии Nanite и PCG, использовалось API OpenStreetMap, а также происходила работа с большим количеством объектов на сцене. Из-за этого применялись различные способы оптимизации с использованием ресурсов GPU.',
+      'projects.rtim.p5': 'Подробнее о моём вкладе я указал в резюме.',
+      'projects.hk.p1': 'На этом проекте мне довелось попробовать себя в качестве backend-разработчика. Для меня это был совершенно нетипичный стек, с которым до этого я взаимодействовал разве что во время учёбы, когда писал простые SQL-запросы и разрабатывал своё клиент-серверное приложение на Java.',
+      'projects.hk.p2': 'Опыт был интересным, но для себя я понял, что backend — не совсем то, что меня вдохновляет, и я бы предпочёл работать с другими инструментами.',
+      'projects.hk.p3': 'Тем не менее сам проект представляет собой многопользовательскую мобильную web-игру в жанре idle. Backend разрабатывался на основе фреймворка Drogon с использованием PostgreSQL и Redis. Я в основном занимался написанием новых API-запросов и решением возникающих проблем.',
+      'projects.hk.p4': 'При этом мне особенно нравился подход команды: кросс-ревью и написание технической документации до начала реализации. Такой процесс позволял заранее продумать решение и только после этого переходить непосредственно к написанию кода.',
+      'projects.hk.p5': 'На этом же проекте я впервые попробовал использовать код-агентов в работе, так как это уже почти вошло в стандарт разработки на проекте. В совокупности с практикой написания TDD это давало довольно стройный и эффективный пайплайн разработки.',
+      'projects.dualrun.title': 'Dual Run',
+      'projects.dualrun.role': 'Unity Developer',
+      'projects.dualrun.meta': 'Учебный проект',
+      'projects.dualrun.p1': 'Мой опыт разработки на Unity. Это также был учебный проект.',
+      'projects.dualrun.p2': 'Я прототипировал демо кооперативного раннера, подключил CI/CD при помощи инструментов GitHub, а также Firebase для сбора статистики и crash reports.',
+      'projects.glintasync.title': 'GlintAsync',
+      'projects.glintasync.role': 'Дипломная работа · 2025',
+      'projects.glintasync.meta': 'Университет ИТМО, магистратура',
+      'projects.glintasync.p1': 'Моя дипломная работа в магистратуре.',
+      'projects.glintasync.p2': 'Я реализовывал оптимизацию существующих алгоритмов рендеринга бликов при помощи асинхронного рендеринга в DirectX 12. Профилировал алгоритм с помощью разных инструментов, искал наиболее затратные этапы и экспериментировал с тем, на каком этапе рендеринга лучше выполнять его расчёт.',
+      'projects.glintasync.p3': 'В итоге перенёс расчёт бликов из пиксельного шейдера в compute shader и запустил его асинхронно с другими процессами в движке. Это позволило сократить GPU время отрисовки кадра примерно с 26 мс до 22 мс (~15%).',
+      'cv.title': 'Даниил Пробыйголова — программист игровой логики',
+      'cv.backLink': '← Портфолио',
+      'cv.printCv': 'Экспортировать резюме в PDF',
+      'cv.about': 'О себе',
+      'cv.contacts': 'Контакты',
+      'cv.about.goal': 'Цель:',
+      'cv.about.goalValue': 'Программист игровой логики (C++ / Unreal Engine)',
+      'cv.about.employment': 'Занятость:',
+      'cv.about.fulltime': 'полная',
+      'cv.skills': 'Навыки',
+      'cv.skill.langs': 'Языки программирования',
+      'cv.skill.engines': 'Движки',
+      'cv.skill.unreal': 'Unreal Engine',
+      'cv.skill.unrealDesc': 'AI (BehaviorTree, Perception, EQS), UI (UMG, Slate), Graphics (Materials, HLSL), Animation (BlendSpace) и другие инструменты движка',
+      'cv.skill.vcs': 'Системы контроля версий',
+      'cv.skill.ci': 'CI/CD',
+      'cv.skill.gfx': 'Компьютерная графика',
+      'cv.skill.langs2': 'Языки',
+      'cv.skill.english': 'Английский — уровень B2',
+      'cv.exp': 'Опыт работы',
+      'cv.exp.org': 'ООО\u00A0«ИВЛ»',
+      'cv.exp.orgPeriod': 'Октябрь 2024 — август 2026',
+      'cv.exp.rtim.period': 'Октябрь 2024 — апрель 2026',
+      'cv.exp.rtim.role': 'C++ / Unreal Engine Developer',
+      'cv.exp.rtim.t1': 'rTIM — AI-платформа для градостроительного проектирования, входящая в реестр решений в сфере искусственного интеллекта для строительной отрасли. Сервис предназначен для генерации и визуализации концепций развития территорий с использованием технологий ИИ.',
+      'cv.exp.rtim.t2': 'Разрабатывал desktop-приложение платформы для интерактивного 3D-проектирования, редактирования и визуализации концепций развития территорий на базе Unreal Engine 5.',
+      'cv.exp.subtitle': 'Основные задачи и достижения:',
+      'cv.exp.rtim.b1': 'Перевёл ключевую функциональность режима редактирования концепций с Blueprints на C++, что позволило проводить полноценное code review через GitLab без необходимости вручную просматривать изменения в Unreal Editor и упростило дальнейшее развитие системы',
+      'cv.exp.rtim.b2': 'Разрабатывал CAD-подобный инструментарий для проектирования и редактирования концепций. Самостоятельно определял архитектурные и программные решения для реализации функционала в рамках существующей кодовой базы',
+      'cv.exp.rtim.b3': 'Реализовывал и интегрировал новый функционал по требованиям заказчика',
+      'cv.exp.rtim.b4': 'Проводил анализ и устранение проблем в существующей кодовой базе, повышая стабильность и надёжность приложения',
+      'cv.exp.hk.period': 'Апрель — август 2026',
+      'cv.exp.hk.role': 'Backend Developer',
+      'cv.exp.hk.t1': 'Hamster King — многопользовательская мобильная web-игра в жанре idle с социальной составляющей. Пиковая аудитория достигала ~500 тыс. активных игроков в месяц.',
+      'cv.exp.subtitle2': 'Основные задачи:',
+      'cv.exp.hk.b1': 'Разработка и развитие backend-компонентов на C++ с использованием фреймворка Drogon',
+      'cv.exp.hk.b2': 'Реализация новых методов API для игровой функциональности',
+      'cv.exp.hk.b3': 'Работа с PostgreSQL и Redis',
+      'cv.exp.hk.b4': 'Рефакторинг существующей кодовой базы',
+      'cv.exp.hk.b5': 'Поиск и устранение ошибок, поддержка стабильности backend-системы',
+      'cv.edu': 'Образование',
+      'cv.edu.mag.title': 'Университет ИТМО — Магистратура',
+      'cv.edu.mag.period': '2025',
+      'cv.edu.mag.role': 'Школа Разработки Видеоигр — Технологии разработки компьютерных игр',
+      'cv.edu.mag.t': 'Тема ВКР — Исследование и разработка алгоритма графического отображения бликов на поверхности воды в режиме реального времени',
+      'cv.edu.bac.title': 'Университет ИТМО — Бакалавриат',
+      'cv.edu.bac.period': '2023',
+      'cv.edu.bac.role': 'Факультет Систем Управления и Робототехники — Мехатроника и Робототехника',
+      'cv.edu.bac.t': 'Тема ВКР — Исследование алгоритмов обучения с подкреплением для робототехнических задач с разреженной наградой'
+    },
+    en: {
+      'common.metaDesc': 'Portfolio of Daniil Probyygolova — game logic programmer (C++ / Unreal Engine)',
+      'common.name': 'Daniil\u00A0Probyygolova',
+      'common.subtitle': 'Gameplay Programmer\u00A0— C++\u00A0/\u00A0Unreal\u00A0Engine',
+      'common.footer': '© 2026 Daniil Probyygolova',
+      'common.trailerCaption': 'Trailer',
+      'contact.mail': 'Email',
+      'contact.phone': 'Phone',
+      'contact.telegram': 'Telegram',
+      'contact.github': 'GitHub',
+      'contact.linkedin': 'LinkedIn',
+      'contact.vk': 'VK',
+      'contact.hh': 'HeadHunter',
+      'main.title': 'Daniil Probyygolova — Portfolio',
+      'main.projectsTitle': 'Projects',
+      'main.projectsIntro': 'Click a project to learn more.',
+      'main.projectsGames': 'Games',
+      'main.projectsTools': 'Tools & Technologies',
+      'main.expTitle': 'Commercial Experience',
+      'main.expIntro': 'My commercial work experience in the gaming and IT industry.',
+      'main.expOrgName': 'LLC\u00A0«IVL»',
+      'main.cvLink': 'Open Resume (CV)',
+      'main.aboutTitle': 'About',
+      'main.aboutP1': 'I heartily welcome you to my portfolio website!',
+      'main.aboutP2': 'I’m a programmer who loves figuring out how things work from the inside. My main focus is game development, but I’m also interested in working with other technologies.',
+      'modal.close': 'Close',
+      'proj.giiga.name': 'GiiGaEngine',
+      'proj.giiga.aria': 'GiiGaEngine — details',
+      'proj.dacha.name': 'Project\u00A0Dacha',
+      'proj.dacha.aria': 'Project Dacha — details',
+      'proj.gravusach.name': 'Gravusach',
+      'proj.gravusach.aria': 'Gravusach — details',
+      'proj.dualrun.name': 'Dual Run',
+      'proj.dualrun.aria': 'Dual Run — details',
+      'proj.glintasync.name': 'GlintAsync',
+      'proj.glintasync.aria': 'GlintAsync — details',
+      'projects.giiga.title': 'GiiGaEngine',
+      'projects.giiga.role': 'C++ Game Engine · 2024',
+      'projects.giiga.meta': 'Team project, 4 developers',
+      'projects.giiga.desc': 'A game engine built with C++20 using C++ Modules and Python scripting.',
+      'projects.giiga.b1': 'Implemented the DirectX 12 rendering system, including Cascaded Shadow Mapping, Deferred Rendering, and other graphics techniques.',
+      'projects.giiga.b2': 'Implemented the game objects transformation system.',
+      'projects.giiga.b3': 'Implemented the event system and integrated the Jolt physics engine.',
+      'projects.giiga.b4': 'Participated in designing the game loop and other key engine systems.',
+      'projects.dacha.title': 'Project Dacha',
+      'projects.dacha.role': 'Lead Programmer · 2024',
+      'projects.dacha.meta': 'Team project, 6 developers',
+      'projects.dacha.desc': 'An indie game on Unreal Engine 5 focused on immersion, exploration, and puzzle solving. The protagonist\'s sanity system affects the gameplay experience and the evolution of game situations. The project\'s demo reached the finals of the VK Laboratory contest.',
+      'projects.dacha.b1': 'Led the programming side of the project and the architecture of game systems.',
+      'projects.dacha.b2': 'Implemented most key gameplay mechanics and systems, including character movement, inventory, interactive objects, and NPC AI.',
+      'projects.dacha.b3': 'Developed Unreal Editor tools, including a plugin for creating and editing dialogues that simplified the quest system and branching dialogue workflows.',
+      'projects.gravusach.title': 'Gravusach',
+      'projects.gravusach.role': 'Solo project · 2023',
+      'projects.gravusach.meta': 'First-person 3D platformer on Unreal Engine 5',
+      'projects.gravusach.desc': 'An independently developed first-person 3D platformer on Unreal Engine 5. Presented the game at ITMO GameDev Day 3.',
+      'projects.gravusach.b1': 'Designed and implemented the gravity system and related movement mechanics.',
+      'projects.gravusach.b2': 'Designed and assembled 5 game levels.',
+      'projects.gravusach.b3': 'Created VFX effects in Niagara.',
+      'projects.gravusach.b4': 'Implemented the game\'s audio design and recorded its soundtrack.',
+      'exp.rtim.name': 'rTIM',
+      'exp.rtim.aria': 'rTIM — details',
+      'exp.hk.name': 'Hamster King',
+      'exp.hk.aria': 'Hamster King — details',
+      'projects.rtim.title': 'rTIM',
+      'projects.rtim.role': 'C++ / Unreal Engine Developer · rTIM',
+      'projects.rtim.meta': 'October 2024 — April 2026',
+      'projects.rtim.desc': 'rTIM is an AI platform for urban design included in the registry of AI solutions for the construction industry. Developed the desktop application for interactive 3D design, editing, and visualization of territory development concepts built on Unreal Engine 5.',
+      'projects.hk.title': 'Hamster King',
+      'projects.hk.role': 'Backend Developer · Hamster King',
+      'projects.hk.meta': 'April — August 2026',
+      'projects.hk.desc': 'A multiplayer mobile web game in the idle genre with a social component. Peak audience reached ~500,000 active players per month.',
+      'projects.giiga.p1': 'This is a university team project that we developed over a semester in the second year of my master’s degree.',
+      'projects.giiga.p2': 'The development process greatly expanded my understanding of how modern game engines and computer graphics work. Together we designed the game loop and decided which systems to build ourselves and which ready-made tools to integrate into the engine — Jolt, for example.',
+      'projects.giiga.p3': 'Details on what exactly I was responsible for can be found in my resume.',
+      'projects.dacha.p1': 'This is a game I worked on as part of a team of six people (at any given time; over the whole development period, significantly more people took part).',
+      'projects.dacha.p2': 'I contributed to nearly all of the game’s mechanics. I also wrote development tools, such as a quest-dialogue plugin.',
+      'projects.dacha.p3': 'A lot of experiments were carried out during the project. For example, my teammates built a custom pipeline for creating models and materials — all to keep a consistent PS1 style with a dithering effect.',
+      'projects.dacha.p4': 'The atmosphere is truly one of the game’s strong points. The project also had a complex global system designed to make the world extremely interesting to explore and responsive to the player’s actions.',
+      'projects.dacha.p5': 'The game is still in early access, but it once reached the finals of the VK Laboratory contest.',
+      'projects.gravusach.p1': 'A game I developed entirely by myself.',
+      'projects.gravusach.p2': 'It was also made as a university project, but the idea had come to me long before, so it was a great chance to implement it and get a well-deserved “excellent” grade at the end of the semester.',
+      'projects.gravusach.p3': 'I presented the game at the ITMO GameDev Day 3 project showcase.',
+      'projects.gravusach.p4': 'My plans include porting the game to VR platforms.',
+      'projects.rtim.p1': 'My first commercial experience as an Unreal Engine developer. It is not a game, which makes it even more interesting that the project was built on the UE5 game engine.',
+      'projects.rtim.p2': 'The project is a platform for urban design. The main product is a backend that generates territory development concepts using generative AI. The product had two clients — web and desktop; the desktop one was my responsibility.',
+      'projects.rtim.p3': 'Its goal was to give engineers a realistic, beautiful, and interactive real-time visualization of the concept they generated, with the ability to edit it further on their own.',
+      'projects.rtim.p4': 'We followed the MVC approach. A lot of work went into UI, since the main user interaction with the app happened through the interface. The project made heavy use of Nanite and PCG, the OpenStreetMap API, and work with a large number of objects on the scene, which required various GPU-driven optimization techniques.',
+      'projects.rtim.p5': 'More details on my contribution can be found in my resume.',
+      'projects.hk.p1': 'On this project I got to try myself as a backend developer. It was a completely atypical stack for me — before that I had only interacted with it during my studies, writing simple SQL queries and developing my own client-server app in Java.',
+      'projects.hk.p2': 'The experience was interesting, but I realized that backend is not quite what inspires me, and I would prefer working with other tools.',
+      'projects.hk.p3': 'Still, the project itself is a multiplayer mobile web game in the idle genre. The backend was built with the Drogon framework using PostgreSQL and Redis. I mostly wrote new API endpoints and solved emerging problems.',
+      'projects.hk.p4': 'I especially liked the team’s approach: cross-review and writing technical documentation before implementation. This process allowed us to think the solution through in advance and only then start writing code.',
+      'projects.hk.p5': 'On this project I also tried using coding agents for the first time, since it had almost become the development standard there. Combined with the practice of writing TDD, it formed a fairly coherent and efficient development pipeline.',
+      'projects.dualrun.title': 'Dual Run',
+      'projects.dualrun.role': 'Unity Developer',
+      'projects.dualrun.meta': 'University project',
+      'projects.dualrun.p1': 'My experience developing in Unity. It was also a university project.',
+      'projects.dualrun.p2': 'I prototyped a cooperative runner demo, set up CI/CD with GitHub tools, and added Firebase for gathering statistics and crash reports.',
+      'projects.glintasync.title': 'GlintAsync',
+      'projects.glintasync.role': 'Graduation thesis · 2025',
+      'projects.glintasync.meta': 'ITMO University, Master’s degree',
+      'projects.glintasync.p1': 'My master’s thesis.',
+      'projects.glintasync.p2': 'I optimized existing glint rendering algorithms using asynchronous rendering in DirectX 12. I profiled the algorithm with various tools, looked for the most costly stages, and experimented with where in the rendering pipeline the computation should be performed.',
+      'projects.glintasync.p3': 'In the end I moved the glint computation from the pixel shader to a compute shader and ran it asynchronously with other engine processes. This reduced GPU frame time from about 26 ms to 22 ms (~15%).',
+      'cv.title': 'Daniil Probyygolova — Gameplay Programmer',
+      'cv.backLink': '← Portfolio',
+      'cv.printCv': 'Export resume as PDF',
+      'cv.about': 'About',
+      'cv.contacts': 'Contacts',
+      'cv.about.goal': 'Goal:',
+      'cv.about.goalValue': 'Gameplay Programmer (C++ / Unreal Engine)',
+      'cv.about.employment': 'Employment:',
+      'cv.about.fulltime': 'full-time',
+      'cv.skills': 'Skills',
+      'cv.skill.langs': 'Programming languages',
+      'cv.skill.engines': 'Engines',
+      'cv.skill.unreal': 'Unreal Engine',
+      'cv.skill.unrealDesc': 'AI (BehaviorTree, Perception, EQS), UI (UMG, Slate), Graphics (Materials, HLSL), Animation (BlendSpace), and other engine tools',
+      'cv.skill.vcs': 'Version control systems',
+      'cv.skill.ci': 'CI/CD',
+      'cv.skill.gfx': 'Computer graphics',
+      'cv.skill.langs2': 'Languages',
+      'cv.skill.english': 'English — B2',
+      'cv.exp': 'Work Experience',
+      'cv.exp.org': 'LLC\u00A0«IVL»',
+      'cv.exp.orgPeriod': 'October 2024 — August 2026',
+      'cv.exp.rtim.period': 'October 2024 — April 2026',
+      'cv.exp.rtim.role': 'C++ / Unreal Engine Developer',
+      'cv.exp.rtim.t1': 'rTIM is an AI platform for urban design included in the registry of artificial intelligence solutions for the construction industry. The service generates and visualizes territory development concepts using AI technologies.',
+      'cv.exp.rtim.t2': 'Developed the platform\'s desktop application for interactive 3D design, editing, and visualization of territory development concepts built on Unreal Engine 5.',
+      'cv.exp.subtitle': 'Key responsibilities and achievements:',
+      'cv.exp.rtim.b1': 'Migrated key functionality of the concept editing mode from Blueprints to C++, enabling full code reviews via GitLab without manually inspecting changes in the Unreal Editor and simplifying further system development',
+      'cv.exp.rtim.b2': 'Developed CAD-like tooling for designing and editing concepts. Independently made architectural and software decisions to implement features within the existing codebase',
+      'cv.exp.rtim.b3': 'Implemented and integrated new features according to customer requirements',
+      'cv.exp.rtim.b4': 'Analyzed and fixed issues in the existing codebase, improving application stability and reliability',
+      'cv.exp.hk.period': 'April — August 2026',
+      'cv.exp.hk.role': 'Backend Developer',
+      'cv.exp.hk.t1': 'Hamster King is a multiplayer mobile web game in the idle genre with a social component. Peak audience reached ~500,000 active players per month.',
+      'cv.exp.subtitle2': 'Key responsibilities:',
+      'cv.exp.hk.b1': 'Development and evolution of backend components in C++ using the Drogon framework',
+      'cv.exp.hk.b2': 'Implementation of new API methods for game functionality',
+      'cv.exp.hk.b3': 'Work with PostgreSQL and Redis',
+      'cv.exp.hk.b4': 'Refactoring of the existing codebase',
+      'cv.exp.hk.b5': 'Fixing bugs and maintaining backend system stability',
+      'cv.edu': 'Education',
+      'cv.edu.mag.title': 'ITMO University — Master\'s degree',
+      'cv.edu.mag.period': '2025',
+      'cv.edu.mag.role': 'School of Video Game Development — Computer Game Development Technologies',
+      'cv.edu.mag.t': 'Graduation thesis — Research and development of a real-time algorithm for rendering glints on a water surface',
+      'cv.edu.bac.title': 'ITMO University — Bachelor\'s degree',
+      'cv.edu.bac.period': '2023',
+      'cv.edu.bac.role': 'Faculty of Control Systems and Robotics — Mechatronics and Robotics',
+      'cv.edu.bac.t': 'Graduation thesis — Research on reinforcement learning algorithms for robotic tasks with sparse rewards'
+    }
+  };
+
+  let initialized = false;
+
+  const getLang = function () {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved === 'ru' || saved === 'en' ? saved : 'ru';
+  };
+
+  const t = function (key) {
+    const lang = getLang();
+    const dict = DICT[lang] || DICT.ru;
+    return dict[key] != null ? dict[key] : key;
+  };
+
+  function applyLang(lang) {
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria')));
+    });
+
+    document.querySelectorAll('[data-i18n-meta]').forEach(function (el) {
+      el.setAttribute('content', t(el.getAttribute('data-i18n-meta')));
+    });
+
+    const titleKey = document.body && document.body.getAttribute('data-i18n-title');
+    if (titleKey) document.title = t(titleKey);
+
+    document.querySelectorAll('.lang-switch').forEach(function (btn) {
+      const next = lang === 'ru' ? 'EN' : 'RU';
+      btn.textContent = next;
+      btn.setAttribute('aria-label', lang === 'ru' ? 'Switch to English' : 'Переключить на русский');
+    });
+
+    document.dispatchEvent(new CustomEvent('langchange', { detail: lang }));
+  }
+
+  function init() {
+    if (initialized) return;
+    initialized = true;
+
+    const lang = getLang();
+    const restore = document.body && document.body.getAttribute('data-i18n-default');
+    if (restore === 'en') {
+      localStorage.setItem(STORAGE_KEY, 'en');
+    }
+
+    applyLang(getLang());
+
+    document.querySelectorAll('.lang-switch').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const next = getLang() === 'ru' ? 'en' : 'ru';
+        localStorage.setItem(STORAGE_KEY, next);
+        applyLang(next);
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState !== 'loading') init();
+
+  window.i18n = { t: t, getLang: getLang };
+})();

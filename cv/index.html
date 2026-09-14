@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Портфолио Даниила Пробыйголова — программист игровой логики (C++ / Unreal Engine)" data-i18n-meta="common.metaDesc">
+  <title data-i18n-title="cv.title">Даниил Пробыйголова — программист игровой логики</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234f46e5'/%3E%3Ctext x='50' y='68' font-size='52' font-family='monospace' fill='white' text-anchor='middle'%3EDP%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../css/cv.css">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      var dark = t === 'dark' || (t !== 'light' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
+</head>
+<body data-i18n-title="cv.title">
+  <main class="container">
+    <div class="cv-layout">
+      <aside class="side-nav" aria-label="Навигация по резюме">
+        <a class="side-back" href="../index.html" data-i18n="cv.backLink">&larr;&nbsp;Портфолио</a>
+        <a href="#top" data-i18n="cv.contacts">Контакты</a>
+        <a href="#about" data-i18n="cv.about">О себе</a>
+        <a href="#skills" data-i18n="cv.skills">Навыки</a>
+        <a href="#experience" data-i18n="cv.exp">Опыт работы</a>
+        <a href="#education" data-i18n="cv.edu">Образование</a>
+        <a href="#projects" data-i18n="main.projectsTitle">Проекты</a>
+        <span class="controls">
+          <button type="button" class="print-btn" onclick="window.print()" aria-label="Экспортировать резюме в PDF" data-i18n-aria="cv.printCv">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          </button>
+          <button type="button" class="theme-toggle" aria-label="Switch to dark theme"></button>
+          <button type="button" class="lang-switch" aria-label="Switch to English">EN</button>
+        </span>
+      </aside>
+      <div class="cv-content">
+    <header class="hero" id="top">
+      <img class="portrait" src="../assets/images/MePhoto_CV.jpg" alt="Фото Даниила Пробыйголова">
+      <h1 class="name" data-i18n="common.name">Даниил&nbsp;Пробыйголова</h1>
+      <p class="subtitle" data-i18n="common.subtitle">Программист игровой логики&nbsp;— C++&nbsp;/&nbsp;Unreal&nbsp;Engine</p>
+      <ul class="contacts" aria-label="Контакты">
+        <li>
+          <a class="contact-link" href="tel:+79155292598" aria-label="Телефон: +7 (915) 529-25-98" data-i18n-aria="contact.phone">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span class="contact-meta">
+              <span class="contact-label" data-i18n="contact.phone">Телефон</span>
+              <span class="contact-text">+7&nbsp;(915)&nbsp;529-25-98</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" href="mailto:daniil.probyygolova@mail.ru" aria-label="Почта: daniil.probyygolova@mail.ru" data-i18n-aria="contact.mail">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </span>
+            <span class="contact-meta">
+              <span class="contact-label" data-i18n="contact.mail">Почта</span>
+              <span class="contact-text">daniil.probyygolova@mail.ru</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" href="https://t.me/Crechted" target="_blank" rel="noopener" aria-label="Telegram: @Crechted" data-i18n-aria="contact.telegram">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-11 11"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
+            </span>
+            <span class="contact-meta">
+              <span class="contact-label" data-i18n="contact.telegram">Telegram</span>
+              <span class="contact-text">@Crechted</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" href="https://github.com/Crechted" target="_blank" rel="noopener" aria-label="GitHub: github.com/Crechted" data-i18n-aria="contact.github">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.25 5.68.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+            </span>
+            <span class="contact-meta">
+              <span class="contact-label" data-i18n="contact.github">GitHub</span>
+              <span class="contact-text">github.com/Crechted</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" href="https://www.linkedin.com/in/daniil-probyygolova-46117342b" target="_blank" rel="noopener" aria-label="LinkedIn: linkedin.com/in/daniil-probyygolova" data-i18n-aria="contact.linkedin">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </span>
+            <span class="contact-meta">
+              <span class="contact-label" data-i18n="contact.linkedin">LinkedIn</span>
+              <span class="contact-text">linkedin.com/in/daniil-probyygolova</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" href="https://vk.ru/crechted" target="_blank" rel="noopener" aria-label="ВКонтакте: vk.ru/crechted" data-i18n-aria="contact.vk">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.16 17.5c-5.8 0-9.16-4.02-9.3-10.68h2.92c.1 4.88 2.28 6.94 3.97 7.37V6.82h2.77v4.2c1.66-.18 3.4-2.1 3.98-4.2h2.76c-.45 2.56-2.33 4.48-3.67 5.26 1.34.63 3.48 2.28 4.29 5.42h-3.04c-.64-2-2.22-3.55-4.32-3.76v3.76h-.36z"/></svg>
+            </span>
+            <span class="contact-meta">
+              <span class="contact-label" data-i18n="contact.vk">ВКонтакте</span>
+              <span class="contact-text">vk.ru/crechted</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" href="https://spb.hh.ru/resume/fdc58f98ff0955832f0039ed1f57456d645a6f" target="_blank" rel="noopener" aria-label="HeadHunter: резюме на hh.ru" data-i18n-aria="contact.hh">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4zm2 4.5h2.6v3.2H9V7.5h2.6v9H9v-3.4H8.6v3.4H6v-9zm5.6 0h2.6c1.5 0 2.6.7 2.6 2 0 1.1-.7 1.7-1.7 1.9l1.9 5.1h-2.8l-1.6-4.5h-.6v4.5h-2.4v-9zm2.6 3.2c.5 0 .8-.3.8-.7s-.3-.7-.8-.7h-.4v1.4h.4z"/></svg>
+            </span>
+            <span class="contact-meta">
+              <span class="contact-label" data-i18n="contact.hh">HeadHunter</span>
+              <span class="contact-text">hh.ru</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </header>
+
+    <section class="card" id="about">
+      <h2 class="section-title" data-i18n="cv.about">О себе</h2>
+      <ul class="about-list">
+        <li><span class="label" data-i18n="cv.about.goal">Цель:</span>&nbsp;<span data-i18n="cv.about.goalValue">Программист игровой логики (C++&nbsp;/&nbsp;Unreal&nbsp;Engine)</span></li>
+        <li><span class="label" data-i18n="cv.about.employment">Занятость:</span>&nbsp;<span data-i18n="cv.about.fulltime">полная</span></li>
+      </ul>
+    </section>
+
+    <section class="card" id="skills">
+      <h2 class="section-title" data-i18n="cv.skills">Навыки</h2>
+      <ul class="skills-list">
+        <li>
+          <span class="label" data-i18n="cv.skill.langs">Языки программирования</span>
+          <span class="tags"><span class="tag">C++ (17/20)</span><span class="tag">C</span><span class="tag">Python</span></span>
+        </li>
+        <li>
+          <span class="label" data-i18n="cv.skill.engines">Движки</span>
+          <span class="tags"><span class="tag">Unreal Engine (4.27/5.1+)</span><span class="tag">Unity</span><span class="tag">GiiGaEngine</span></span>
+        </li>
+        <li>
+          <span class="label" data-i18n="cv.skill.unreal">Unreal Engine</span>
+          <p class="skill-desc" data-i18n="cv.skill.unrealDesc">AI (BehaviorTree, Perception, EQS), UI (UMG, Slate), Graphics (Materials, HLSL), Animation (BlendSpace) и другие инструменты движка</p>
+        </li>
+        <li>
+          <span class="label" data-i18n="cv.skill.vcs">Системы контроля версий</span>
+          <span class="tags"><span class="tag">git</span><span class="tag">SVN</span><span class="tag">perforce</span></span>
+        </li>
+        <li>
+          <span class="label" data-i18n="cv.skill.ci">CI/CD</span>
+          <span class="tags"><span class="tag">TeamCity</span><span class="tag">Git</span></span>
+        </li>
+        <li>
+          <span class="label" data-i18n="cv.skill.gfx">Компьютерная графика</span>
+          <span class="tags"><span class="tag">DirectX 11/12</span><span class="tag">HLSL</span></span>
+        </li>
+        <li>
+          <span class="label" data-i18n="cv.skill.langs2">Языки</span>
+          <span class="tags"><span class="tag" data-i18n="cv.skill.english">Английский — уровень B2</span></span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card" id="experience">
+      <h2 class="section-title" data-i18n="cv.exp">Опыт работы</h2>
+
+      <article class="entry">
+        <header class="entry-header">
+          <h3 class="entry-title" data-i18n="cv.exp.org">ООО&nbsp;«ИВЛ»</h3>
+          <span class="entry-period" data-i18n="cv.exp.orgPeriod">Октябрь 2024 — август 2026</span>
+        </header>
+
+        <div class="job">
+          <header class="entry-header">
+            <h4 class="job-title" data-i18n="exp.rtim.name">rTIM</h4>
+            <span class="entry-period" data-i18n="cv.exp.rtim.period">Октябрь 2024 — апрель 2026</span>
+          </header>
+          <p class="entry-role" data-i18n="cv.exp.rtim.role">C++ / Unreal Engine Developer</p>
+          <p class="entry-link"><a href="https://rtim.city" target="_blank" rel="noopener">rtim.city</a></p>
+          <p class="entry-text" data-i18n="cv.exp.rtim.t1">rTIM&nbsp;— AI-платформа для градостроительного проектирования, входящая в реестр решений в сфере искусственного интеллекта для строительной отрасли. Сервис предназначен для генерации и визуализации концепций развития территорий с использованием технологий ИИ.</p>
+          <p class="entry-text" data-i18n="cv.exp.rtim.t2">Разрабатывал desktop-приложение платформы для интерактивного 3D-проектирования, редактирования и визуализации концепций развития территорий на базе Unreal Engine&nbsp;5.</p>
+          <p class="entry-subtitle" data-i18n="cv.exp.subtitle">Основные задачи и достижения:</p>
+          <ul class="bullets">
+            <li data-i18n="cv.exp.rtim.b1">Перевёл ключевую функциональность режима редактирования концепций с Blueprints на C++, что позволило проводить полноценное code review через GitLab без необходимости вручную просматривать изменения в Unreal Editor и упростило дальнейшее развитие системы</li>
+            <li data-i18n="cv.exp.rtim.b2">Разрабатывал CAD-подобный инструментарий для проектирования и редактирования концепций. Самостоятельно определял архитектурные и программные решения для реализации функционала в рамках существующей кодовой базы</li>
+            <li data-i18n="cv.exp.rtim.b3">Реализовывал и интегрировал новый функционал по требованиям заказчика</li>
+            <li data-i18n="cv.exp.rtim.b4">Проводил анализ и устранение проблем в существующей кодовой базе, повышая стабильность и надёжность приложения</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <header class="entry-header">
+            <h4 class="job-title" data-i18n="exp.hk.name">Hamster King</h4>
+            <span class="entry-period" data-i18n="cv.exp.hk.period">Апрель — август 2026</span>
+          </header>
+          <p class="entry-role" data-i18n="cv.exp.hk.role">Backend Developer</p>
+          <p class="entry-link"><a href="https://app.hamsterking.games" target="_blank" rel="noopener">app.hamsterking.games</a></p>
+          <p class="entry-text" data-i18n="cv.exp.hk.t1">Hamster King&nbsp;— многопользовательская мобильная web-игра в жанре idle с социальной составляющей. Пиковая аудитория достигала ~500&nbsp;тыс. активных игроков в месяц.</p>
+          <p class="entry-subtitle" data-i18n="cv.exp.subtitle2">Основные задачи:</p>
+          <ul class="bullets">
+            <li data-i18n="cv.exp.hk.b1">Разработка и развитие backend-компонентов на C++ с использованием фреймворка Drogon</li>
+            <li data-i18n="cv.exp.hk.b2">Реализация новых методов API для игровой функциональности</li>
+            <li data-i18n="cv.exp.hk.b3">Работа с PostgreSQL и Redis</li>
+            <li data-i18n="cv.exp.hk.b4">Рефакторинг существующей кодовой базы</li>
+            <li data-i18n="cv.exp.hk.b5">Поиск и устранение ошибок, поддержка стабильности backend-системы</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="card" id="education">
+      <h2 class="section-title" data-i18n="cv.edu">Образование</h2>
+
+      <article class="entry">
+        <header class="entry-header">
+          <h3 class="entry-title" data-i18n="cv.edu.mag.title">Университет ИТМО — Магистратура</h3>
+          <span class="entry-period" data-i18n="cv.edu.mag.period">2025</span>
+        </header>
+        <p class="entry-role" data-i18n="cv.edu.mag.role">Школа Разработки Видеоигр — Технологии разработки компьютерных игр</p>
+        <p class="entry-text" data-i18n="cv.edu.mag.t">Тема ВКР — Исследование и разработка алгоритма графического отображения бликов на поверхности воды в режиме реального времени</p>
+        <p class="entry-link"><a href="https://github.com/Crechted/GlintAsync" target="_blank" rel="noopener">github.com/Crechted/GlintAsync</a></p>
+      </article>
+
+      <article class="entry">
+        <header class="entry-header">
+          <h3 class="entry-title" data-i18n="cv.edu.bac.title">Университет ИТМО — Бакалавриат</h3>
+          <span class="entry-period" data-i18n="cv.edu.bac.period">2023</span>
+        </header>
+        <p class="entry-role" data-i18n="cv.edu.bac.role">Факультет Систем Управления и Робототехники — Мехатроника и Робототехника</p>
+        <p class="entry-text" data-i18n="cv.edu.bac.t">Тема ВКР — Исследование алгоритмов обучения с подкреплением для робототехнических задач с разреженной наградой</p>
+      </article>
+    </section>
+
+    <section class="card" id="projects">
+      <h2 class="section-title" data-i18n="main.projectsTitle">Проекты</h2>
+
+      <article class="entry">
+        <header class="entry-header">
+          <h3 class="entry-title" data-i18n="projects.giiga.title">GiiGaEngine</h3>
+          <span class="entry-period" data-i18n="projects.giiga.role">C++ Game Engine · 2024</span>
+        </header>
+        <p class="entry-role" data-i18n="projects.giiga.meta">Командный проект, 4 разработчика</p>
+        <p class="entry-link"><a href="https://github.com/GiiGaTeam/GiiGaEngine" target="_blank" rel="noopener">github.com/GiiGaTeam/GiiGaEngine</a></p>
+        <p class="entry-text" data-i18n="projects.giiga.desc">Игровой движок на C++20 с использованием C++ Modules и скриптингом на Python.</p>
+        <ul class="bullets">
+          <li data-i18n="projects.giiga.b1">Реализовывал систему рендеринга на DirectX 12, включая Cascaded Shadow Mapping, Deferred Rendering и другие графические техники</li>
+          <li data-i18n="projects.giiga.b2">Реализовал систему трансформаций игровых объектов</li>
+          <li data-i18n="projects.giiga.b3">Реализовал систему событий и интегрировал физический движок Jolt</li>
+          <li data-i18n="projects.giiga.b4">Участвовал в проектировании игрового цикла и других ключевых систем движка</li>
+        </ul>
+      </article>
+
+      <article class="entry">
+        <header class="entry-header">
+          <h3 class="entry-title" data-i18n="projects.dacha.title">Проект Дача</h3>
+          <span class="entry-period" data-i18n="projects.dacha.role">Lead Programmer · 2024</span>
+        </header>
+        <p class="entry-role" data-i18n="projects.dacha.meta">Командный проект, 6 разработчиков</p>
+        <p class="entry-link"><a href="https://vkplay.ru/play/game/project-dacha/" target="_blank" rel="noopener">vkplay.ru/play/game/project-dacha/</a></p>
+        <p class="entry-text" data-i18n="projects.dacha.desc">Инди-игра на Unreal Engine 5 с упором на иммерсивность, исследование и решение головоломок. Система рассудка главной героини влияет на игровой опыт и развитие игровых ситуаций. Демоверсия проекта вышла в финал конкурса VK Лаборатория.</p>
+        <ul class="bullets">
+          <li data-i18n="projects.dacha.b1">Отвечал за программную часть проекта и архитектуру игровых систем</li>
+          <li data-i18n="projects.dacha.b2">Реализовал большинство ключевых игровых механик и систем, включая перемещение персонажа, инвентарь, интерактивные объекты и AI NPC</li>
+          <li data-i18n="projects.dacha.b3">Разработал инструменты для редактора Unreal Engine, включая плагин для создания и редактирования диалогов, упростивший реализацию квестовой системы и работу с ветвлением диалогов</li>
+        </ul>
+      </article>
+
+      <article class="entry">
+        <header class="entry-header">
+          <h3 class="entry-title" data-i18n="projects.gravusach.title">Gravusach</h3>
+          <span class="entry-period" data-i18n="projects.gravusach.role">Одиночный проект · 2023</span>
+        </header>
+        <p class="entry-link"><a href="https://crechted.itch.io/gravusach" target="_blank" rel="noopener">crechted.itch.io/gravusach</a></p>
+        <p class="entry-text" data-i18n="projects.gravusach.desc">Самостоятельно разработанный 3D-платформер от первого лица на Unreal Engine 5. Представил игру на ITMO GameDev Day 3.</p>
+        <ul class="bullets">
+          <li data-i18n="projects.gravusach.b1">Спроектировал и реализовал систему гравитации и связанные с ней механики перемещения</li>
+          <li data-i18n="projects.gravusach.b2">Спроектировал и собрал 5 игровых уровней</li>
+          <li data-i18n="projects.gravusach.b3">Создал VFX-эффекты в Niagara</li>
+          <li data-i18n="projects.gravusach.b4">Реализовал звуковое оформление и записал музыкальное сопровождение проекта</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <p data-i18n="common.footer">© 2026 Даниил Пробыйголова</p>
+    </footer>
+      </div>
+    </div>
+  </main>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/theme.js"></script>
+</body>
+</html>
