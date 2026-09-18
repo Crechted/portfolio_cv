@@ -380,10 +380,11 @@
   // ---- draw mesh ----
   var wv = [];
   var faceBuf = [];
+  var drawList = [];
 
   // software z-buffer for the ship: guarantees exact per-pixel visibility
   var zCanvas = null, zCtx = null, zImg = null, zDepth = null, zW = 0, zH = 0;
-  var ZSS = 2;
+  var ZSS = IS_TOUCH ? 1 : 2;
   var _sx = null, _sy = null, _sz = null, _sb = null;
 
   function rasterMesh(mesh, wv) {
@@ -415,15 +416,21 @@
     if (x1 <= x0 || y1 <= y0) return;
     var w = x1 - x0, h = y1 - y0, W = w * ZSS, H = h * ZSS;
     if (!zCanvas) { zCanvas = document.createElement('canvas'); zCtx = zCanvas.getContext('2d'); }
-    if (zW !== W || zH !== H) {
-      zCanvas.width = W; zCanvas.height = H;
-      zImg = zCtx.createImageData(W, H);
-      zDepth = new Float32Array(W * H);
-      zW = W; zH = H;
+    if (W > zW || H > zH) {
+      zW = Math.max(Math.ceil(W), zW);
+      zH = Math.max(Math.ceil(H), zH);
+      zCanvas.width = zW;
+      zCanvas.height = zH;
+      zImg = zCtx.createImageData(zW, zH);
+      zDepth = new Float32Array(zW * zH);
     }
     var data = zImg.data;
-    data.fill(0);
-    zDepth.fill(Infinity);
+    var stride = zW;
+    var clearBytes = W * 4;
+    for (var yy = 0; yy < H; yy++) {
+      data.fill(0, yy * stride * 4, yy * stride * 4 + clearBytes);
+    }
+    zDepth.fill(Infinity, 0, W * H);
 
     function shade(face) {
       var inds = face.i;
@@ -473,7 +480,7 @@
           if (neg) { w0 = -w0; w1 = -w1; w2 = -w2; }
           if (w0 < 0 || w1 < 0 || w2 < 0) continue;
           var z = 1 / ((w0 * iza + w1 * izb + w2 * izc) / area);
-          var idx = y * W + x;
+          var idx = y * stride + x;
           if (z >= zDepth[idx]) continue;
           var o = idx * 4;
           if (glass) {
@@ -512,7 +519,7 @@
       for (j = 1; j + 1 < gf.i.length; j++) tri(gf.i[0], gf.i[j], gf.i[j + 1], gr, gg, gb, 140);
     }
 
-    zCtx.putImageData(zImg, 0, 0);
+    zCtx.putImageData(zImg, 0, 0, 0, 0, W, H);
     ctx.imageSmoothingEnabled = true;
     ctx.drawImage(zCanvas, 0, 0, W, H, x0, y0, w, h);
   }
@@ -1080,7 +1087,7 @@
     }
     ctx.globalCompositeOperation = 'source-over';
 
-    var drawList = [];
+    drawList.length = 0;
     for (i = 0; i < asteroids.length; i++) {
       drawList.push({ z: asteroids[i].z, obj: asteroids[i], kind: 'ast' });
     }
@@ -1186,7 +1193,7 @@
   function resize() {
     vw = shell.clientWidth || canvas.clientWidth || 800;
     vh = canvas.clientHeight || Math.min(shell.clientHeight, 600) || 480;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, IS_TOUCH ? 1.5 : 2);
     canvas.width = Math.max(1, Math.round(vw * dpr));
     canvas.height = Math.max(1, Math.round(vh * dpr));
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
