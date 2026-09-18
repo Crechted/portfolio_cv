@@ -19,6 +19,10 @@
   var controlHint = document.getElementById('game-control-hint');
   var overScoreEl = document.getElementById('game-over-score');
   var overBestEl = document.getElementById('game-over-best');
+  var touchControls = document.getElementById('game-touch');
+  var joystick = document.getElementById('game-joystick');
+  var joystickKnob = document.getElementById('game-joystick-knob');
+  var fireBtn = document.getElementById('game-fire-btn');
 
   var BEST_KEY = 'portfolio-game-best';
   var AMMO_KEY = 'portfolio-game-ammo';
@@ -35,6 +39,10 @@
 
   function updateTouchMode() {
     canvas.style.touchAction = (state === 'playing') ? 'none' : 'auto';
+    if (touchControls) {
+      var show = IS_TOUCH && state === 'playing';
+      touchControls.classList.toggle('hidden', !show);
+    }
   }
 
   function ammoClaimed() {
@@ -1224,12 +1232,84 @@
   // ---- controls ----
   function setTarget(e) {
     if (state !== 'playing') return;
+    if (touchControls && e.target && touchControls.contains(e.target)) return;
     var r = canvas.getBoundingClientRect();
     pointerX = (e.clientX - r.left) / r.width;
     pointerY = (e.clientY - r.top) / r.height;
     targetX = clamp((pointerX - 0.5) * 6.4, -3.9, 3.9);
     targetY = SHIP_Y0 + (0.5 - pointerY) * (pointerY < 0.5 ? SHIP_Y_RANGE_UP : SHIP_Y_RANGE_DOWN);
     targetY = clamp(targetY, SHIP_Y_MIN, SHIP_Y_MAX);
+  }
+
+  function setTargetFromJoystick(jx, jy) {
+    targetX = clamp(jx * 3.9, -3.9, 3.9);
+    if (jy < 0) {
+      targetY = SHIP_Y0 + (-jy) * SHIP_Y_RANGE_UP;
+    } else {
+      targetY = SHIP_Y0 - jy * SHIP_Y_RANGE_DOWN;
+    }
+    targetY = clamp(targetY, SHIP_Y_MIN, SHIP_Y_MAX);
+  }
+
+  var joyId = null;
+
+  function updateJoystick(e) {
+    var r = joystick.getBoundingClientRect();
+    var cxp = r.left + r.width / 2;
+    var cyp = r.top + r.height / 2;
+    var dx = e.clientX - cxp;
+    var dy = e.clientY - cyp;
+    var max = r.width * 0.32;
+    var len = Math.hypot(dx, dy);
+    if (len < 0.001) len = 1;
+    var cl = Math.min(len, max);
+    var kx = (dx / len) * cl;
+    var ky = (dy / len) * cl;
+    joystickKnob.style.transform = 'translate(-50%, -50%) translate(' + kx.toFixed(1) + 'px, ' + ky.toFixed(1) + 'px)';
+    setTargetFromJoystick(clamp(dx / max, -1, 1), clamp(dy / max, -1, 1));
+  }
+
+  function resetJoystick() {
+    joyId = null;
+    if (joystickKnob) joystickKnob.style.transform = 'translate(-50%, -50%)';
+    if (state === 'playing') {
+      targetX = 0;
+      targetY = SHIP_Y0;
+    }
+  }
+
+  if (joystick) {
+    joystick.addEventListener('pointerdown', function (e) {
+      if (state !== 'playing') return;
+      e.preventDefault();
+      joyId = e.pointerId;
+      if (joystick.setPointerCapture) {
+        try { joystick.setPointerCapture(e.pointerId); } catch (err) {}
+      }
+      updateJoystick(e);
+    });
+
+    joystick.addEventListener('pointermove', function (e) {
+      if (state !== 'playing') return;
+      if (joyId !== null && e.pointerId !== joyId) return;
+      e.preventDefault();
+      updateJoystick(e);
+    });
+
+    joystick.addEventListener('pointerup', function (e) {
+      if (joyId !== null && e.pointerId !== joyId) return;
+      resetJoystick();
+    });
+
+    joystick.addEventListener('pointercancel', function () { resetJoystick(); });
+  }
+
+  if (fireBtn) {
+    fireBtn.addEventListener('pointerdown', function (e) {
+      if (state !== 'playing') return;
+      e.preventDefault();
+      fire();
+    });
   }
 
   window.addEventListener('pointermove', setTarget);

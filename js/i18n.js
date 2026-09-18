@@ -169,7 +169,8 @@
       'game.hudAmmoLabel': 'Заряды',
       'game.hudBestLabel': 'Рекорд',
       'game.controlHintMouse': 'Управление — мышь',
-      'game.controlHintTouch': 'Управление — палец'
+      'game.controlHintTouch': 'Управление — палец',
+      'game.fireLabel': 'Выстрел'
     },
     en: {
       'common.metaDesc': 'Portfolio of Daniil Probyygolova - game logic programmer (C++ / Unreal Engine)',
@@ -338,7 +339,8 @@
       'game.hudAmmoLabel': 'Shots',
       'game.hudBestLabel': 'Best',
       'game.controlHintMouse': 'Mouse controls',
-      'game.controlHintTouch': 'Touch controls'
+      'game.controlHintTouch': 'Touch controls',
+      'game.fireLabel': 'Fire'
     }
   };
 
