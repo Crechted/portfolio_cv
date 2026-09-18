@@ -28,6 +28,8 @@
       'main.aboutP1': 'Категорически приветствую на моём сайте-портфолио!',
       'main.aboutP2': 'Я программист, который любит разбираться в том, как всё работает изнутри. Основной профиль - разработка компьютерных игр, но мне интересно работать и с другими технологиями.',
       'modal.close': 'Закрыть',
+      'modal.ammoGet': 'Получить заряд',
+      'modal.ammoGot': 'Заряд получен',
       'proj.giiga.name': 'GiiGaEngine',
       'proj.giiga.aria': 'GiiGaEngine - подробнее',
       'proj.dacha.name': 'Проект\u00A0Дача',
@@ -154,7 +156,20 @@
       'cv.edu.bac.title': 'Университет ИТМО - Бакалавриат',
       'cv.edu.bac.period': '2023',
       'cv.edu.bac.role': 'Факультет Систем Управления и Робототехники - Мехатроника и Робототехника',
-      'cv.edu.bac.t': 'Тема ВКР - Исследование алгоритмов обучения с подкреплением для робототехнических задач с разреженной наградой'
+      'cv.edu.bac.t': 'Тема ВКР - Исследование алгоритмов обучения с подкреплением для робототехнических задач с разреженной наградой',
+      'game.ariaLabel': 'Демо-мини-игра: полёт сквозь астероиды',
+      'game.title': 'Астероидный полёт',
+      'game.badge': 'Демо',
+      'game.startBtn': 'Играть',
+      'game.overTitle': 'Корабль уничтожен',
+      'game.overScore': 'Очки',
+      'game.overBest': 'Рекорд',
+      'game.restartBtn': 'Начать сначала',
+      'game.hudLabel': 'Счёт',
+      'game.hudAmmoLabel': 'Заряды',
+      'game.hudBestLabel': 'Рекорд',
+      'game.controlHintMouse': 'Управление — мышь',
+      'game.controlHintTouch': 'Управление — палец'
     },
     en: {
       'common.metaDesc': 'Portfolio of Daniil Probyygolova - game logic programmer (C++ / Unreal Engine)',
@@ -182,6 +197,8 @@
       'main.aboutP1': 'I heartily welcome you to my portfolio website!',
       'main.aboutP2': 'I’m a programmer who loves figuring out how things work from the inside. My main focus is game development, but I’m also interested in working with other technologies.',
       'modal.close': 'Close',
+      'modal.ammoGet': 'Get a charge',
+      'modal.ammoGot': 'Charge collected',
       'proj.giiga.name': 'GiiGaEngine',
       'proj.giiga.aria': 'GiiGaEngine - details',
       'proj.dacha.name': 'Project\u00A0Dacha',
@@ -308,7 +325,20 @@
       'cv.edu.bac.title': 'ITMO University - Bachelor\'s degree',
       'cv.edu.bac.period': '2023',
       'cv.edu.bac.role': 'Faculty of Control Systems and Robotics - Mechatronics and Robotics',
-      'cv.edu.bac.t': 'Graduation thesis - Research on reinforcement learning algorithms for robotic tasks with sparse rewards'
+      'cv.edu.bac.t': 'Graduation thesis - Research on reinforcement learning algorithms for robotic tasks with sparse rewards',
+      'game.ariaLabel': 'Demo mini-game: flying through asteroids',
+      'game.title': 'Asteroid Flight',
+      'game.badge': 'Demo',
+      'game.startBtn': 'Play',
+      'game.overTitle': 'Ship destroyed',
+      'game.overScore': 'Score',
+      'game.overBest': 'Best',
+      'game.restartBtn': 'Start over',
+      'game.hudLabel': 'Score',
+      'game.hudAmmoLabel': 'Shots',
+      'game.hudBestLabel': 'Best',
+      'game.controlHintMouse': 'Mouse controls',
+      'game.controlHintTouch': 'Touch controls'
     }
   };
 

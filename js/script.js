@@ -135,6 +135,8 @@ const bulletsEl = document.getElementById('modal-bullets');
 const toolsEl = document.getElementById('modal-tools');
 const linkEl = document.getElementById('modal-link');
 const mediaEl = document.getElementById('modal-media');
+const ammoBtn = document.getElementById('modal-ammo-btn');
+const ammoLabel = document.getElementById('modal-ammo-label');
 
 function renderMedia(m) {
   mediaEl.textContent = '';
@@ -229,10 +231,19 @@ function openModal(key) {
   linkEl.href = p.link;
   linkEl.textContent = p.linkText;
 
+  updateAmmoBtn();
+
   overlay.classList.remove('hidden');
   overlay.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
   modal.focus();
+}
+
+function updateAmmoBtn() {
+  const has = window.portfolioGame && window.portfolioGame.isClaimed(openKey);
+  ammoBtn.disabled = !!has;
+  ammoBtn.classList.toggle('granted', !!has);
+  ammoLabel.textContent = i18n.t(has ? 'modal.ammoGot' : 'modal.ammoGet');
 }
 
 function closeModal() {
@@ -248,6 +259,21 @@ document.querySelectorAll('.project-tile').forEach((btn) => {
 });
 
 closeBtn.addEventListener('click', closeModal);
+
+ammoBtn.addEventListener('click', () => {
+  if (openKey && window.portfolioGame && window.portfolioGame.claimAmmo(openKey)) {
+    updateAmmoBtn();
+    ammoBtn.classList.add('granted-pop');
+    const badge = document.createElement('span');
+    badge.className = 'ammo-grant-badge';
+    badge.textContent = '+1';
+    ammoBtn.appendChild(badge);
+    setTimeout(() => {
+      ammoBtn.classList.remove('granted-pop');
+      if (badge.parentNode) badge.parentNode.removeChild(badge);
+    }, 850);
+  }
+});
 
 overlay.addEventListener('click', (e) => {
   if (e.target === overlay) closeModal();

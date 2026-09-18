@@ -23,6 +23,7 @@
       <button type="button" class="theme-toggle" aria-label="Switch to dark theme"></button>
       <button type="button" class="lang-switch" aria-label="Switch to English">EN</button>
     </div>
+
     <header class="hero">
       <div class="hero-row">
         <img class="portrait" src="assets/images/MePhoto_Portpholio.jpg" alt="Фото Даниила Пробыйголова">
@@ -158,6 +159,41 @@
       </div>
     </section>
 
+    <section class="game-shell" id="game-shell" role="img" aria-label="Демо-мини-игра: полёт сквозь астероиды" data-i18n-aria="game.ariaLabel">
+      <canvas id="game-canvas"></canvas>
+      <div class="game-vignette" aria-hidden="true"></div>
+
+      <div class="game-hud hidden" id="game-hud" aria-hidden="true">
+        <div class="game-hud-score">
+          <span class="game-hud-label" data-i18n="game.hudLabel">Счёт</span>
+          <span class="game-hud-value" id="game-hud-score-value">0</span>
+        </div>
+        <div class="game-hud-ammo">
+          <span class="game-hud-label" data-i18n="game.hudAmmoLabel">Заряды</span>
+          <span class="game-hud-value" id="game-hud-ammo-value">1/8</span>
+        </div>
+        <div class="game-hud-best">
+          <span class="game-hud-label" data-i18n="game.hudBestLabel">Рекорд</span>
+          <span class="game-hud-value" id="game-hud-best-value">0</span>
+        </div>
+      </div>
+
+      <div class="game-control-hint hidden" id="game-control-hint">Управление — мышь</div>
+
+      <div class="game-overlay" id="game-start">
+        <h2 class="game-title" data-i18n="game.title">Астероидный полёт</h2>
+        <span class="game-badge" data-i18n="game.badge"></span>
+        <button type="button" class="game-btn" id="game-start-btn" data-i18n="game.startBtn">Играть</button>
+      </div>
+
+      <div class="game-overlay hidden" id="game-over">
+        <h2 class="game-over-title" data-i18n="game.overTitle"></h2>
+        <p class="game-over-score" id="game-over-score"></p>
+        <p class="game-over-best" id="game-over-best"></p>
+        <button type="button" class="game-btn" id="game-restart-btn" data-i18n="game.restartBtn"></button>
+      </div>
+    </section>
+
     <footer class="footer">
       <p data-i18n="common.footer">© 2026 Даниил Пробыйголова</p>
     </footer>
@@ -172,6 +208,10 @@
       <div class="modal-media" id="modal-media"></div>
       <div class="modal-desc" id="modal-desc"></div>
       <ul class="modal-bullets" id="modal-bullets"></ul>
+      <button type="button" class="modal-ammo-btn" id="modal-ammo-btn">
+        <svg class="modal-ammo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+        <span class="modal-ammo-label" id="modal-ammo-label"></span>
+      </button>
       <div class="modal-tools" id="modal-tools"></div>
       <a class="modal-link" id="modal-link" href="#" target="_blank" rel="noopener"></a>
     </div>
@@ -179,6 +219,7 @@
 
   <script src="js/i18n.js"></script>
   <script src="js/theme.js"></script>
+  <script src="js/game.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
