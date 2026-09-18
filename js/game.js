@@ -20,14 +20,12 @@
   var overScoreEl = document.getElementById('game-over-score');
   var overBestEl = document.getElementById('game-over-best');
   var touchControls = document.getElementById('game-touch');
-  var joystick = document.getElementById('game-joystick');
-  var joystickKnob = document.getElementById('game-joystick-knob');
   var fireBtn = document.getElementById('game-fire-btn');
 
   var BEST_KEY = 'portfolio-game-best';
   var AMMO_KEY = 'portfolio-game-ammo';
-  var AMMO_DEFAULT = 1;
-  var AMMO_MAX = 8;
+  var AMMO_DEFAULT = 0;
+  var AMMO_MAX = 7;
   var SHOT_SPEED = 240;
   var t = function (k) { return (window.i18n && i18n.t) ? i18n.t(k) : k; };
 
@@ -94,6 +92,7 @@
   var targetPitch = 0, targetYaw = 0, targetRoll = 0;
   var pointerX = 0.5, pointerY = 0.5;
   var smVx = 0, smVy = 0, prevPointerX = 0.5, prevPointerY = 0.5;
+  var touchId = null, touchLastX = 0, touchLastY = 0;
   var spawnTimer = 0, crystalTimer = 0, hintTimer = 0;
   var dispScore = -1;
   var asteroids = [], crystals = [], particles = [], popups = [], stars = [], shots = [];
@@ -767,6 +766,7 @@
   }
 
   function updateAmmoHud() {
+    if (fireBtn) fireBtn.disabled = currentAmmo <= 0;
     if (!hudAmmoValue) return;
     hudAmmoValue.textContent = `${currentAmmo}/${AMMO_MAX}`;
     if (hudAmmoBlock) hudAmmoBlock.classList.toggle('is-empty', currentAmmo <= 0);
@@ -966,6 +966,7 @@
     targetPitch = 0; targetYaw = 0; targetRoll = 0;
     pointerX = 0.5; pointerY = 0.5;
     prevPointerX = 0.5; prevPointerY = 0.5;
+    touchId = null;
     smVx = 0; smVy = 0;
     spawnTimer = 1.1; crystalTimer = rand(2.0, 3.2);
     asteroids.length = 0;
@@ -1234,74 +1235,31 @@
     if (state !== 'playing') return;
     if (touchControls && e.target && touchControls.contains(e.target)) return;
     var r = canvas.getBoundingClientRect();
+
+    if (e.pointerType === 'touch') {
+      if (touchId === null) {
+        touchId = e.pointerId;
+        touchLastX = e.clientX;
+        touchLastY = e.clientY;
+        return;
+      }
+      if (e.pointerId !== touchId) return;
+      var tdx = e.clientX - touchLastX;
+      var tdy = e.clientY - touchLastY;
+      touchLastX = e.clientX;
+      touchLastY = e.clientY;
+      pointerX = clamp(pointerX + tdx / r.width, 0, 1);
+      pointerY = clamp(pointerY + tdy / r.height, 0, 1);
+      targetX = clamp(targetX + tdx * (6.4 / r.width), -3.9, 3.9);
+      targetY = clamp(targetY - tdy * ((SHIP_Y_MAX - SHIP_Y_MIN) / r.height), SHIP_Y_MIN, SHIP_Y_MAX);
+      return;
+    }
+
     pointerX = (e.clientX - r.left) / r.width;
     pointerY = (e.clientY - r.top) / r.height;
     targetX = clamp((pointerX - 0.5) * 6.4, -3.9, 3.9);
     targetY = SHIP_Y0 + (0.5 - pointerY) * (pointerY < 0.5 ? SHIP_Y_RANGE_UP : SHIP_Y_RANGE_DOWN);
     targetY = clamp(targetY, SHIP_Y_MIN, SHIP_Y_MAX);
-  }
-
-  function setTargetFromJoystick(jx, jy) {
-    targetX = clamp(jx * 3.9, -3.9, 3.9);
-    if (jy < 0) {
-      targetY = SHIP_Y0 + (-jy) * SHIP_Y_RANGE_UP;
-    } else {
-      targetY = SHIP_Y0 - jy * SHIP_Y_RANGE_DOWN;
-    }
-    targetY = clamp(targetY, SHIP_Y_MIN, SHIP_Y_MAX);
-  }
-
-  var joyId = null;
-
-  function updateJoystick(e) {
-    var r = joystick.getBoundingClientRect();
-    var cxp = r.left + r.width / 2;
-    var cyp = r.top + r.height / 2;
-    var dx = e.clientX - cxp;
-    var dy = e.clientY - cyp;
-    var max = r.width * 0.32;
-    var len = Math.hypot(dx, dy);
-    if (len < 0.001) len = 1;
-    var cl = Math.min(len, max);
-    var kx = (dx / len) * cl;
-    var ky = (dy / len) * cl;
-    joystickKnob.style.transform = 'translate(-50%, -50%) translate(' + kx.toFixed(1) + 'px, ' + ky.toFixed(1) + 'px)';
-    setTargetFromJoystick(clamp(dx / max, -1, 1), clamp(dy / max, -1, 1));
-  }
-
-  function resetJoystick() {
-    joyId = null;
-    if (joystickKnob) joystickKnob.style.transform = 'translate(-50%, -50%)';
-    if (state === 'playing') {
-      targetX = 0;
-      targetY = SHIP_Y0;
-    }
-  }
-
-  if (joystick) {
-    joystick.addEventListener('pointerdown', function (e) {
-      if (state !== 'playing') return;
-      e.preventDefault();
-      joyId = e.pointerId;
-      if (joystick.setPointerCapture) {
-        try { joystick.setPointerCapture(e.pointerId); } catch (err) {}
-      }
-      updateJoystick(e);
-    });
-
-    joystick.addEventListener('pointermove', function (e) {
-      if (state !== 'playing') return;
-      if (joyId !== null && e.pointerId !== joyId) return;
-      e.preventDefault();
-      updateJoystick(e);
-    });
-
-    joystick.addEventListener('pointerup', function (e) {
-      if (joyId !== null && e.pointerId !== joyId) return;
-      resetJoystick();
-    });
-
-    joystick.addEventListener('pointercancel', function () { resetJoystick(); });
   }
 
   if (fireBtn) {
@@ -1316,14 +1274,30 @@
 
   window.addEventListener('pointerdown', function (e) {
     if (state !== 'playing') return;
-    setTarget(e);
     if (e.target === canvas) {
-      fire();
-      if (canvas.setPointerCapture) {
-        try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+      if (e.pointerType === 'touch') {
+        touchId = e.pointerId;
+        touchLastX = e.clientX;
+        touchLastY = e.clientY;
+        if (canvas.setPointerCapture) {
+          try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+        }
+      } else {
+        setTarget(e);
+        fire();
+        if (canvas.setPointerCapture) {
+          try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+        }
       }
     }
   });
+
+  function endTouchDrag(e) {
+    if (e.pointerId === touchId) touchId = null;
+  }
+
+  window.addEventListener('pointerup', endTouchDrag);
+  window.addEventListener('pointercancel', endTouchDrag);
 
   canvas.addEventListener('touchmove', function (e) {
     if (state === 'playing') e.preventDefault();
